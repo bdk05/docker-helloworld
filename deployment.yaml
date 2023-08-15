@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: helloworld-java-server
-        image: bdk05/docker-helloworld
+        image: bdemir05/helloworld-java
         ports:
         - containerPort: 3000
         
