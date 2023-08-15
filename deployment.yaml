@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-java-deployment
+  labels:
+    app: helloworld-java
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloworld-java
+  template:
+    metadata:
+      labels:
+        app: helloworld-java 
+    spec:
+      containers:
+      - name: helloworld-java-server
+        image: bdk05/docker-helloworld
+        ports:
+        - containerPort: 3000
+        
+        
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-java-service
+spec:
+  selector:
+    app: helloworld-java 
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 3000
+    nodePort: 31110
